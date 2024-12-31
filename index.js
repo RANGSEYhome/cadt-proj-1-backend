@@ -75,20 +75,20 @@ const io = new Server(server, {
 
 
 // protocal: websocket, socket.io
-io.on('connection', (socket) => {
-    console.log(`${socket.id} connected`);
-    socket.on('send-message', async (payload) => {
-        const chat = new ChatModel({
-            byUser: payload.id,
-            text: payload.text
-        })
-        await chat.save()
-        await chat.populate('byUser')
-        // Recieve
-        // Save chat to DB
-        io.emit('re-message', chat)
-    })
-})
+// io.on('connection', (socket) => {
+//     console.log(`${socket.id} connected`);
+//     socket.on('send-message', async (payload) => {
+//         const chat = new ChatModel({
+//             byUser: payload.id,
+//             text: payload.text
+//         })
+//         await chat.save()
+//         await chat.populate('byUser')
+//         // Recieve
+//         // Save chat to DB
+//         io.emit('re-message', chat)
+//     })
+// })
 
 dbConnect().catch((err) => {
     console.log(err)
@@ -123,7 +123,7 @@ app.use(bodyParser.json())
 // app.use(logger)
 
 app.use('/v1/auth', authRouter)
-app.use('/v1/chats', chatRouter)
+// app.use('/v1/chats', chatRouter)
 
 // app.use(limiter)
 app.use('/v1/files', passport.authenticate('jwt', { session: false }), fileRouter)
@@ -135,18 +135,18 @@ app.use('/v1/files', passport.authenticate('jwt', { session: false }), fileRoute
 // app.use(cacheInterceptor(3 * 60))
 // app.use(invalidateInterceptor)
 // Cachable Routes
-app.use('/v1/courses',
-    passport.authenticate('jwt', { session: false }),
-    cacheMiddleware,
-    cacheInterceptor(3 * 60),
-    invalidateInterceptor,
-    courseRouter)
-app.use('/v1/books',
-    passport.authenticate('jwt', { session: false }),
-    cacheMiddleware,
-    cacheInterceptor(3 * 60),
-    invalidateInterceptor,
-    bookRouter)
+// app.use('/v1/courses',
+//     passport.authenticate('jwt', { session: false }),
+//     cacheMiddleware,
+//     cacheInterceptor(3 * 60),
+//     invalidateInterceptor,
+//     courseRouter)
+// app.use('/v1/books',
+//     passport.authenticate('jwt', { session: false }),
+//     cacheMiddleware,
+//     cacheInterceptor(3 * 60),
+//     invalidateInterceptor,
+//     bookRouter)
 app.use('/v1/users',
     passport.authenticate('jwt', { session: false }),
     cacheMiddleware,

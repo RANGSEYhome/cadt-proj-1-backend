@@ -10,6 +10,6 @@ authRouter.post('/sign-up/:id?', signUpSchema, handleValidation, signUp)
 // authRouter.get('/google-oauth', showGoogleOAuth)
 // authRouter.get('/google-callback', handleGoogle)
 authRouter.get('/me', verifyJWT, exchangeJWTToUser)
-authRouter.get('/refresh', verifyRefresh, exchangeRefreshToken)
+// authRouter.get('/refresh', verifyRefresh, exchangeRefreshToken)
 
 module.exports = authRouter

@@ -72,9 +72,9 @@ const getFilesByQuery = asyncHandler(async (req, res) => {
       const files = await FileModel.find(query);
 
         // Respond with the list of files
-        if (files.length === 0) {
-            return res.status(404).json({ message: "No files found for the given criteria." });
-        }
+        // if (files.length === 0) {
+        //     return res.status(404).json({ message: "No files found for the given criteria." });
+        // }
 
         return res.json(files);
     } catch (error) {
